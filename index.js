@@ -84,7 +84,7 @@ autoClick.addEventListener("click", () => {
         updatePowerupsStorage("auto-click");
 
         const storage = getStorage();
-        const quantAutoClicks = storage.powerups.filter(powerups => powerups == "auto-click").length;
+        const quantAutoClicks = storage.powerups.filter(powerup => powerup == "auto-click").length;
 
         const newScore = scoreValue - price;
 
