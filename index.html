@@ -6,11 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clicker Game</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./img/cookie.png" type="image/x-icon">
 </head>
 
 <body>
     <h1>Bienvenido a mi primer juego clicker en HTML, CSS y JS</h1>
-
+    <main class="container">
+        <div id="score"><span>0</span> Galletas</div>
+        <div class="coockie-container">
+            <img id="cookie" class="cookie" src="./img/cookie.png" alt="Galleta" srcset="">
+        </div>
+        <div class="auto-click disable">
+            <h2>Auto Clicks</h2>
+            <div class="cursors"></div>
+        </div>
+    </main>
+    <div class="cookie-clicks"></div>
     <script src="index.js"></script>
 </body>
 
