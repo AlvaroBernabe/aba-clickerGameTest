@@ -41,6 +41,7 @@ const cookieClicked = cookies => {
 
     let newScore;
 
+    /* Si hay Multiplicador comprado, multiplica los click exponencialmente*/
     if(storage.powerups.includes("upgrade-click")) {
         const multiplier = storage.powerups.filter(powerup => powerup == "upgrade-click").length;
         if(multiplier == 1){
@@ -154,3 +155,40 @@ upgradeClick.addEventListener("click", () => {
         }, 300)
     }
 })
+
+const getSavedData = () => {
+    const storage = getStorage();
+
+    updateScore(storage.cookies);
+
+    if(storage.powerups.includes("upgrade-click")) {
+        const multiplier = storage.powerups.filter(powerup => powerup == "upgrade-click").length;
+        if (multiplier == 1) {
+            upgradeClick.setAttribute("data-price", 100 * 2);
+            upgradeClickTextPrice.innerHTML = 100 * 2;
+        } else {
+            upgradeClick.setAttribute("data-price", 100 * (2 ** multiplier));
+            upgradeClickTextPrice.innerHTML = 100 * (2 ** multiplier);
+        }
+    }
+    if(storage.powerups.includes("auto-click")) {
+        const quantAutoClicks = storage.powerups.filter(powerup => powerup == "auto-click").length;
+        document.querySelector(".auto-clicks").classList.remove("disable")
+        if (quantAutoClicks == 1) {
+            autoClick.setAttribute("data-price", 100 * 2);
+            autoClickTextPrice.innerHTML = 100 * 2;
+        } else {
+            autoClick.setAttribute("data-price", 100 * (quantAutoClicks + 1));
+            autoClickTextPrice.innerHTML = 100 * (quantAutoClicks + 1);
+        }
+        for (i=1;i <= quantAutoClicks; i++) {
+            autoClickCookie();
+            document.querySelector(".auto-clicks").classList.remove("disable")
+
+            document.querySelector(".auto-clicks .cursors").innerHTML += '<img id="cursor" class="cursor auto" src="img/cursor.png" alt="cursor" srcset="">'
+    
+        }
+    }
+}
+
+document.addEventListener("load", getSavedData());
