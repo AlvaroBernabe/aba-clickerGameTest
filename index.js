@@ -28,7 +28,7 @@ const cookieClicked = cookies => {
     const scoreValue = cookies ? cookies : parseInt(score.innerText);
 
     let newScore;
-    
+
     newScore = scoreValue + 1;
 
     updateScore(newScore);
