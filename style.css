@@ -151,11 +151,11 @@
 
 @keyframes clickEffect {
     from {
-        transform: rotate(28deg) scale(.8);
+        transform: rotate(28deg) scale(.7);
     }
  
     to {
-        transform: rotate(28deg) scale(.7);
+        transform: rotate(28deg) scale(.8);
     }
 }
 

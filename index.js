@@ -6,15 +6,15 @@ const updateScore = cookies => {
     const title = document.querySelector("title");
     const score = document.querySelector("#score span");
 
-    score.innerHTML = cookies;
-    title.innerHTML = cookies + " cookies - Cookie Clicker";
+    score.innerText = cookies;
+    title.innerHTML = cookies + " cookies - Cookie Clicker"
 
     localStorage.setItem("cookies", cookies);
 }
 
-const updatePowerupsStorage = powerups => {
+const updatePowerupsStorage = powerup => {
     let powerups = JSON.parse(localStorage.getItem("powerups")) || [];
-    powerups.push(powerups);
+    powerups.push(powerup);
 
     localStorage.setItem("powerups", JSON.stringify(powerups));
 }
@@ -75,3 +75,39 @@ const autoClickCookie = () => {
     }, 1000)
 }
 
+autoClick.addEventListener("click", () => {
+    const price = autoClick.getAttribute("data-price");
+    const score = document.querySelector("#score span");
+    const scoreValue = parseInt(score.innerText)
+
+    if (scoreValue >= price) {
+        updatePowerupsStorage("auto-click");
+
+        const storage = getStorage();
+        const quantAutoClicks = storage.powerups.filter(powerups => powerups == "auto-click").length;
+
+        const newScore = scoreValue - price;
+
+        updateScore(newScore)
+
+        if (quantAutoClicks == 1) {
+            autoClick.setAttribute("data-price", 100 * 2);
+            autoClickTextPrice.innerHTML = 100 * 2;
+        } else {
+            autoClick.setAttribute("data-price", 100 * (quantAutoClicks + 1));
+            autoClickTextPrice.innerHTML = 100 * (quantAutoClicks + 1);
+        }
+
+        document.querySelector(".auto-clicks").classList.remove("disable")
+
+        document.querySelector(".auto-clicks .cursors").innerHTML += '<img id="cursor" class="cursor auto" src="img/cursor.png" alt="cursor" srcset="">'
+
+        autoClickCookie();
+
+    } else {
+        autoClick.classList.add("invalid")
+        setTimeout(() => {
+            autoClick.classList.remove("invalid")
+        }, 300)
+    }
+})
