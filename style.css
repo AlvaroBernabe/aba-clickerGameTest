@@ -77,6 +77,48 @@
     background-color: #fff;
 }
 
+.powerups:active{
+    transform: scale(.9);
+}
+.powerups .name {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.powerups .price {
+    font-size: 1.1rem;
+    color: mediumspringgreen;
+}
+
+.cursor.auto-click {
+    width: 80px;
+    transform: rotate(28deg);
+    padding: 10px;
+}
+
+.disable {
+    display: none;
+}
+
+.auto-clicks h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px #000;
+    text-align: center;
+    color: white;
+    padding: 10px 0;
+}
+
+.cursor.auto {
+    animation: clickEffect .5 ease alternate infinite;
+}
+
+.cursor {
+    width: 80px;
+}
+
+
+
 /* Keyframes Rotar Galleta */
 
 @keyframes rotates {
@@ -99,5 +141,15 @@
     to {
         opacity: 0;
         top: 0;
+    }
+}
+
+@keyframes clickEffect {
+    from {
+        transform: rotate(28deg) scale(.8);
+    }
+
+    to {
+        transform: rotate(28deg) scale(.7);
     }
 }
