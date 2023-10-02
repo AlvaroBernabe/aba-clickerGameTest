@@ -1,6 +1,9 @@
 const cookie = document.querySelector("#cookie");
 const autoClick = document.querySelector("#auto-click");
-const autoClickTextPrice = document.querySelector("#auto-click .price span")
+const autoClickTextPrice = document.querySelector("#auto-click .price span");
+const upgradeClick = document.querySelector("#upgrade-click");
+const upgradeClickTextPrice = document.querySelector("#upgrade-click .price span");
+
 
 const updateScore = cookies => {
     const title = document.querySelector("title");
@@ -38,7 +41,16 @@ const cookieClicked = cookies => {
 
     let newScore;
 
-    newScore = scoreValue + 1;
+    if(storage.powerups.includes("upgrade-click")) {
+        const multiplier = storage.powerups.filter(powerup => powerup == "upgrade-click").length;
+        if(multiplier == 1){
+            newScore = scoreValue + 2;
+        } else {
+            newScore = scoreValue + (2 ** multiplier)
+        }
+    } else {
+        newScore = scoreValue + 1;
+    }
 
     updateScore(newScore);
 }
@@ -108,6 +120,37 @@ autoClick.addEventListener("click", () => {
         autoClick.classList.add("invalid")
         setTimeout(() => {
             autoClick.classList.remove("invalid")
+        }, 300)
+    }
+})
+
+upgradeClick.addEventListener("click", () => {
+    const price = autoClick.getAttribute("data-price");
+    const score = document.querySelector("#score span");
+    const scoreValue = parseInt(score.innerText)
+
+    if (scoreValue >= price) {
+        updatePowerupsStorage("upgrade-click");
+
+        const storage = getStorage();
+        const multiplier = storage.powerups.filter(powerup => powerup == "upgrade-click").length;
+
+        const newScore = scoreValue - price;
+
+        updateScore(newScore)
+
+        if (multiplier == 1) {
+            upgradeClick.setAttribute("data-price", 100 * 2);
+            upgradeClickTextPrice.innerHTML = 100 * 2;
+        } else {
+            upgradeClick.setAttribute("data-price", 100 * (2 ** multiplier));
+            upgradeClickTextPrice.innerHTML = 100 * (2 ** multiplier);
+        }
+
+    } else {
+        upgradeClick.classList.add("invalid")
+        setTimeout(() => {
+            upgradeClick.classList.remove("invalid")
         }, 300)
     }
 })
