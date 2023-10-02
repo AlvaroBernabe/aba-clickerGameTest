@@ -36,7 +36,20 @@
     animation: rotates 20s linear infinite;
 }
 
-/* Keyframes */
+/*Animación Galleta al hacer click */
+.cookie:active {
+    width: 270px;
+}
+
+.cookie-particle {
+    width: 30px;
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    pointer-events: none;
+}
+
+/* Keyframes Rotar Galleta */
 
 @keyframes rotates {
     from {

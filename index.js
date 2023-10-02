@@ -34,6 +34,23 @@ const cookieClicked = cookies => {
     updateScore(newScore);
 }
 
+const createParticle = (x, y) => {
+    const cookieClicks = document.querySelector(".cookie-clicks");
+
+    const particle = document.createElement("img");
+    particle.setAttribute("src", "img/cookie.png");
+    particle.setAttribute("class", "cookie-particle");
+    particle.style.left = x + "px";
+    particle.style.top = y + "px";
+
+    cookieClicks.appendChild(particle);
+
+    setTimeout(() => {
+        cookieClicks.removeChild(particle);
+    }, 3000);
+}
+
 cookie.addEventListener("click", (e) => {
+    createParticle(e.clientX, e.clientY);
     cookieClicked()
 });
