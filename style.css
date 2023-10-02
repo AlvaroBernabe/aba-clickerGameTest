@@ -25,3 +25,23 @@
     color: white;
     background-color: rgba(0, 0, 0, .4);
 }
+
+.cookie-container {
+    height: 320px;
+}
+.cookie {
+    width: 300px;
+    cursor: pointer;
+    filter: drop-shadow(0 0 2px white);
+    animation: rotates 20s linear infinite;
+}
+
+/* Keyframes */
+
+@keyframes rotates {
+    from {
+        transform: rotate(0);
+    } to {
+        transform: rotate(360deg);
+    }
+}
