@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     overflow: hidden;
     user-select: none;
 }
@@ -13,7 +13,7 @@
     align-items: center;
     flex-direction: column;
     gap: 50px;
-    background-color: blueviolet;
+    background-color: #5D79AB;
     padding: 20px 0;
 }
 
@@ -24,7 +24,7 @@
     width: 100%;
     text-align: center;
     color: white;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0,0,0,.4);
 }
 
 .cookie-container {
@@ -35,15 +35,13 @@
     width: 300px;
     cursor: pointer;
     filter: drop-shadow(0 0 2px white);
-    animation: rotates 20s linear infinite;
+    animation: rotates 100s linear infinite;
 }
 
-/*Animación Galleta al hacer click */
 .cookie:active {
-    width: 270px;
+    width: 280px;
 }
 
-/*Galleta pequeña al hacer click */
 .cookie-particle {
     width: 30px;
     position: absolute;
@@ -59,12 +57,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0,0,0,.4);
     margin-bottom: 20px;
     gap: 50px;
 }
 
-.powerups {
+.powerup {
     width: 150px;
     height: 160px;
     border: 2px solid;
@@ -77,23 +75,24 @@
     background-color: #fff;
 }
 
-.powerups:active{
+.powerup:active {
     transform: scale(.9);
 }
-.powerups .name {
+
+.powerup .name {
     font-size: 1.3rem;
     font-weight: bold;
 }
 
-.powerups .price {
+.powerup .price {
     font-size: 1.1rem;
-    color: mediumspringgreen;
+    color: rgb(31,181,41);
 }
 
 .cursor.auto-click {
     width: 80px;
     transform: rotate(28deg);
-    padding: 10px;
+    padding-top: 10px;
 }
 
 .invalid {
@@ -114,35 +113,38 @@
     padding: 10px 0;
 }
 
+.auto-clicks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: visible;
+    background-color: rgba(0,0,0,.4);
+    width: 100%;
+}
+
 .cursor.auto {
-    animation: clickEffect .5 ease alternate infinite;
+    animation: clickEffect .5s ease alternate infinite;
 }
 
 .cursor {
     width: 80px;
 }
 
-
-
-/* Keyframes Rotar Galleta */
+/* Keyframes */
 
 @keyframes rotates {
     from {
         transform: rotate(0);
     }
-
     to {
         transform: rotate(360deg);
     }
 }
 
-/* Keyframes Galleta pequeña desaparece y sube */
-
 @keyframes cookie-up {
     from {
         opacity: 1;
     }
-
     to {
         opacity: 0;
         top: 0;
@@ -150,12 +152,11 @@
 }
 
 @keyframes clickEffect {
-    from {
-        transform: rotate(28deg) scale(.7);
-    }
- 
     to {
         transform: rotate(28deg) scale(.8);
+    }
+    from {
+        transform: rotate(28deg) scale(.7);
     }
 }
 
