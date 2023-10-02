@@ -5,14 +5,14 @@ const updateScore = cookies => {
     const score = document.querySelector("#score span");
 
     score.innerHTML = cookies;
-    title.innerHTML = cookie + " cookies - Cookie Clicker";
+    title.innerHTML = cookies + " cookies - Cookie Clicker";
 
     localStorage.setItem("cookies", cookies);
 }
 
 const getStorage = () => {
     const cookies = localStorage.getItem("cookies") || 0;
-    const powerups = Json.parse(localStorage.getItem("powerups")) || [];
+    const powerups = JSON.parse(localStorage.getItem("powerups")) || [];
 
     const storage = {
         "cookies": cookies,
@@ -20,6 +20,7 @@ const getStorage = () => {
     }
     return storage;
 }
+
 const cookieClicked = cookies => {
     const storage = getStorage();
 
