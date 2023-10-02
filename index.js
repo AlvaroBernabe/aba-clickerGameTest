@@ -1,4 +1,6 @@
 const cookie = document.querySelector("#cookie");
+const autoClick = document.querySelector("#auto-click");
+const autoClickTextPrice = document.querySelector("#auto-click .price span")
 
 const updateScore = cookies => {
     const title = document.querySelector("title");
@@ -8,6 +10,13 @@ const updateScore = cookies => {
     title.innerHTML = cookies + " cookies - Cookie Clicker";
 
     localStorage.setItem("cookies", cookies);
+}
+
+const updatePowerupsStorage = powerups => {
+    let powerups = JSON.parse(localStorage.getItem("powerups")) || [];
+    powerups.push(powerups);
+
+    localStorage.setItem("powerups", JSON.stringify(powerups));
 }
 
 const getStorage = () => {
@@ -54,3 +63,15 @@ cookie.addEventListener("click", (e) => {
     createParticle(e.clientX, e.clientY);
     cookieClicked()
 });
+
+const autoClickCookie = () => {
+    setInterval(() => {
+        const score = document.querySelector("#score span");
+        const scoreValue = parseInt(score.innerText);
+
+        newScore = scoreValue + 1;
+
+        updateScore(newScore)
+    }, 1000)
+}
+

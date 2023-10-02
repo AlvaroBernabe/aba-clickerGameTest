@@ -96,6 +96,11 @@
     padding: 10px;
 }
 
+.invalid {
+    border: 2px solid red;
+    animation: error .3s linear infinite;
+}
+
 .disable {
     display: none;
 }
@@ -148,8 +153,26 @@
     from {
         transform: rotate(28deg) scale(.8);
     }
-
+ 
     to {
         transform: rotate(28deg) scale(.7);
+    }
+}
+
+@keyframes error {
+    20% {
+        transform: translateX(10px);
+    }
+    40% {
+        transform: translateX(0);
+    }
+    60% {
+        transform: translateX(-10px);
+    }
+    80% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(10px);
     }
 }
